@@ -90,9 +90,7 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="dashboard-content-body">
-          {(users || []).map((user, index) => (
-            <UserCard user={user} key={index} />
-          ))}
+          <UserCard users={users} />
         </div>
         <div className="dashboard-pagination">
           <button
