@@ -3,9 +3,8 @@ import classNames from 'classnames';
 import axios from 'axios';
 
 // components
-import Sidebar from '../../components/Sidebar';
 import UserCard from '../../components/UserCard';
-import Header from '../../components/Header';
+import HeaderSidebar from '../../components/HeaderSidebar';
 
 // styles
 import './styles.scss';
@@ -68,8 +67,7 @@ export default function Dashboard() {
 
   return (
     <div id="dashboard" className="dashboard">
-      <Header />
-      <Sidebar menus={menus} />
+      <HeaderSidebar menus={menus} />
       <div className="dashboard-content">
         <div className="dashboard-content-header">
           <div className="dashboard-content-header-title">

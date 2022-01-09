@@ -1,5 +1,6 @@
 .dashboard {
   width: 100%;
+  min-width: 300px;
   min-height: 100vh;
   padding-top: 64px;
   display: flex;
@@ -12,6 +13,7 @@
   padding: 24px;
   overflow: hidden;
   overflow-x: auto;
+  margin-left: 280px;
 
   &-header,
   &-header-action {
@@ -106,5 +108,39 @@
     &.disabled {
       color: #adadad;
     }
+  }
+}
+
+@media screen and (min-width: 200px) and (max-width: 900px) {
+  .dashboard-content {
+    margin-left: 0px;
+  }
+}
+
+@media screen and (min-width: 200px) and (max-width: 680px) {
+  .dashboard-content {
+    &-header,
+    &-header-action {
+      flex-direction: column;
+      align-items: flex-start;
+      min-width: unset;
+      width: -webkit-fill-available;
+    }
+
+    .button, .search-input {
+      margin-top: 16px;
+      width: 100%;
+
+      input {
+        width: calc(100% - 42px);
+      }
+    }
+  }
+}
+
+@media screen and (min-width: 200px) and (max-width: 450px) {
+  .dashboard-content-body {
+    flex-direction: column;
+    overflow: hidden;
   }
 }

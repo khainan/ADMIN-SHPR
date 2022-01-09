@@ -47,10 +47,43 @@
       font-weight: 600;
     }
 
-    > img {
+    img {
       width: 60px;
       height: 60px;
       border-radius: 100%;
+    }
+  }
+}
+
+@media screen and (min-width: 200px) and (max-width: 450px) {
+  .dashboard-user-card {
+    height: 200px;
+    margin-bottom: 24px;
+    max-width: unset;
+    margin-right: 0px;
+    width: calc(100% - 24px);
+  
+    &-body {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      h5:nth-child(4),
+      h5:nth-child(5),
+      h5:nth-child(7),
+      p:nth-child(6),
+      p:last-child {
+        display: none;
+      }
+
+      img {
+        width: 120px;
+        height: 120px;
+      }
+
+      .user-card-image {
+        margin-right: 16px;
+      }
     }
   }
 }
