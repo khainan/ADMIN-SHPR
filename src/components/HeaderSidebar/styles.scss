@@ -102,6 +102,7 @@
 
   .dashboard-sidebar {
     opacity: 0;
+    width: 0px;
 
     &.open {
       opacity: 1;
