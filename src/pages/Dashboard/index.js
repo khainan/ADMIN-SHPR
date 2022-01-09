@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
 import axios from 'axios';
+import moment from 'moment';
 
 // styles
 import './styles.scss';
@@ -98,14 +99,14 @@ export default function Dashboard() {
               </div>
               <div className="dashboard-user-card-body">
                 <img src={user.picture.large} alt="" />
-                <h5>Nama Drive</h5>
+                <h5>Nama Driver</h5>
                 <p>{`${user.name.first} ${user.name.last}`}</p>
                 <h5>Telephone</h5>
                 <p>{user.cell}</p>
                 <h5>Email</h5>
                 <p>{user.email}</p>
                 <h5>Tanggal Lahir</h5>
-                <p>{user.dob.date}</p>
+                <p>{moment(user.dob.date).format('DD MMM YYYY')}</p>
               </div>
             </div>
           ))}
