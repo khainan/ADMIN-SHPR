@@ -87,7 +87,7 @@
 }
 
 .dashboard-pagination {
-  height: 30px;
+  height: 60px;
   width: 100%;
   display: flex;
   align-items: center;
@@ -95,6 +95,8 @@
   margin-top: 24px;
 
   button {
+    height: 50px;
+    background-color: unset;
     font-weight: 600;
     cursor: pointer;
     outline: none;
