@@ -19,14 +19,18 @@ export default function Dashboard() {
     await axios
       .get('https://randomuser.me/api/?results=5')
       .then((res) => {
-        const { result } = res;
-        setListUsers(result);
+        const { data } = res;
+        const { results } = data || [];
+        console.log(res);
+        setListUsers(results);
       })
       .catch((e) => console.log(e));
   };
 
   const nextPage = () => {
-    setCurrentPage((page) => page + 1);
+    if (currentPage < 5) {
+      setCurrentPage((page) => page + 1);
+    }
   };
 
   const previousPage = () => {
@@ -37,7 +41,9 @@ export default function Dashboard() {
 
   useEffect(() => {
     getListUsers();
-  }, []);
+  }, [currentPage]);
+
+  console.log(currentPage);
 
   return (
     <div id="dashboard" className="dashboard">
@@ -81,27 +87,44 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="dashboard-content-body">
-          <div className="dashboard-user-card">
-            <div className="dashboard-user-card-header">
-                <p>Driver ID: </p>
+          {(users || []).map((user, index) => (
+            <div className="dashboard-user-card" key={index}>
+              <div className="dashboard-user-card-header">
+                <p>
+                  Driver ID:{' '}
+                  <span>{(user.id.value || '').slice(0, 5) || '-'}</span>
+                </p>
                 <div />
-            </div>
-            <div className="dashboard-user-card-body">
-                <img src="" alt="" />
+              </div>
+              <div className="dashboard-user-card-body">
+                <img src={user.picture.large} alt="" />
                 <h5>Nama Drive</h5>
-                <p>First Name</p>
+                <p>{`${user.name.first} ${user.name.last}`}</p>
                 <h5>Telephone</h5>
-                <p>First Name</p>
+                <p>{user.cell}</p>
                 <h5>Email</h5>
-                <p>First Name</p>
+                <p>{user.email}</p>
                 <h5>Tanggal Lahir</h5>
-                <p>First Name</p> 
+                <p>{user.dob.date}</p>
+              </div>
             </div>
-          </div>
+          ))}
         </div>
         <div className="dashboard-pagination">
-            <button>{'<'} Previous Page</button>
-            <button>Next Page {'>'}</button>
+          <button
+            disabled={!currentPage}
+            className={classNames({ disabled: !currentPage })}
+            onClick={previousPage}
+          >
+            {'<'} Previous Page
+          </button>
+          <button
+            disabled={currentPage > 5}
+            className={classNames({ disabled: currentPage > 4 })}
+            onClick={nextPage}
+          >
+            Next Page {'>'}
+          </button>
         </div>
       </div>
     </div>
