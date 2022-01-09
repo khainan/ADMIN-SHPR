@@ -1,0 +1,56 @@
+.dashboard-user-card {
+  background-color: #fff;
+  min-width: 250px;
+  max-width: 250px;
+  height: 300px;
+  padding: 12px;
+  border-radius: 4px;
+  margin-right: 24px;
+
+  &:last-child {
+    margin-right: 0px;
+  }
+
+  &-header {
+    border-bottom: 1px solid #eee;
+    margin: -12px;
+    padding: 12px;
+    margin-bottom: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    > div {
+      height: 6px;
+      width: 24px;
+      background-color: #eee;
+    }
+
+    p {
+      color: #adadad;
+
+      > span {
+        color: #e21717;
+      }
+    }
+  }
+
+  &-body {
+    h5 {
+      color: #adadad;
+      font-weight: normal;
+      margin-top: 14px;
+    }
+
+    p {
+      font-size: 14px;
+      font-weight: 600;
+    }
+
+    > img {
+      width: 60px;
+      height: 60px;
+      border-radius: 100%;
+    }
+  }
+}
