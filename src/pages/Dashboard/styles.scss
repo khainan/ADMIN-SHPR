@@ -31,9 +31,13 @@
     p {
       font-size: 16px;
       margin-right: 12px;
+
+      > span {
+        color: #e21717;
+      }
     }
 
-    img {
+    > div {
       width: 24px;
       height: 24px;
       border-radius: 100%;
@@ -44,8 +48,33 @@
 
 .dashboard-sidebar {
   min-height: calc(100vh - 64px);
-  width: 250px;
+  width: 280px;
   padding: 24px 0;
+
+  &-menu {
+    display: flex;
+    align-items: center;
+    height: 32px;
+    padding-left: 24px;
+    border-left: 4px solid #fff;
+    cursor: pointer;
+
+    &.active, &:hover {
+      color: #e21717;
+      border-left: 4px solid #e21717;
+    }
+
+    &:hover {
+      opacity: 0.8;
+    }
+
+    > div {
+      height: 24px;
+      width: 24px;
+      background: #eee;
+      margin-right: 8px;
+    }
+  }
 }
 
 .dashboard-content {
@@ -53,7 +82,8 @@
   background-color: #eee;
   padding: 24px;
 
-  &-header, &-header-action {
+  &-header,
+  &-header-action {
     display: flex;
     align-items: center;
     justify-content: space-between;
