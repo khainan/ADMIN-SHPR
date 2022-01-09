@@ -3,6 +3,9 @@ import classNames from 'classnames';
 import axios from 'axios';
 import moment from 'moment';
 
+// components
+import Sidebar from '../../components/Sidebar';
+
 // styles
 import './styles.scss';
 
@@ -76,19 +79,7 @@ export default function Dashboard() {
           <div />
         </div>
       </div>
-      <div className="dashboard-sidebar">
-        {menus.map((menu, index) => (
-          <div
-            className={classNames('dashboard-sidebar-menu', {
-              active: menu.title === 'Driver Management',
-            })}
-            key={index}
-          >
-            <div />
-            <p>{menu.title}</p>
-          </div>
-        ))}
-      </div>
+      <Sidebar menus={menus} />
       <div className="dashboard-content">
         <div className="dashboard-content-header">
           <div className="dashboard-content-header-title">
