@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import classNames from 'classnames';
+import axios from 'axios';
 
 // styles
 import './styles.scss';
@@ -14,6 +15,16 @@ export default function Dashboard() {
     { title: 'Pick Up' },
   ];
 
+  const getListUsers = async () => {
+    await axios
+      .get('https://randomuser.me/api/?results=5')
+      .then((res) => {
+        const { result } = res;
+        setListUsers(result);
+      })
+      .catch((e) => console.log(e));
+  };
+
   const nextPage = () => {
     setCurrentPage((page) => page + 1);
   };
@@ -23,6 +34,10 @@ export default function Dashboard() {
       setCurrentPage((page) => page - 1);
     }
   };
+
+  useEffect(() => {
+    getListUsers();
+  }, []);
 
   return (
     <div id="dashboard" className="dashboard">
@@ -59,11 +74,34 @@ export default function Dashboard() {
           </div>
           <div className="dashboard-content-header-action">
             <div className="search-input">
-              <div />
+              <div className="search-icon" />
               <input placeholder="Cari driver" />
             </div>
-            <button>TAMBAH DRIVER</button>
+            <button className="button">TAMBAH DRIVER +</button>
           </div>
+        </div>
+        <div className="dashboard-content-body">
+          <div className="dashboard-user-card">
+            <div className="dashboard-user-card-header">
+                <p>Driver ID: </p>
+                <div />
+            </div>
+            <div className="dashboard-user-card-body">
+                <div />
+                <h5>Nama Drive</h5>
+                <p>First Name</p>
+                <h5>Telephone</h5>
+                <p>First Name</p>
+                <h5>Email</h5>
+                <p>First Name</p>
+                <h5>Tanggal Lahir</h5>
+                <p>First Name</p> 
+            </div>
+          </div>
+        </div>
+        <div className="dashboard-pagination">
+            <div>{'<'} Previous Page</div>
+            <div>{'>'} Next Page</div>
         </div>
       </div>
     </div>
