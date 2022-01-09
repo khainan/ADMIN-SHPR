@@ -87,7 +87,7 @@ export default function Dashboard() {
                 <div />
             </div>
             <div className="dashboard-user-card-body">
-                <div />
+                <img src="" alt="" />
                 <h5>Nama Drive</h5>
                 <p>First Name</p>
                 <h5>Telephone</h5>
@@ -100,8 +100,8 @@ export default function Dashboard() {
           </div>
         </div>
         <div className="dashboard-pagination">
-            <div>{'<'} Previous Page</div>
-            <div>{'>'} Next Page</div>
+            <button>{'<'} Previous Page</button>
+            <button>Next Page {'>'}</button>
         </div>
       </div>
     </div>
