@@ -9,9 +9,10 @@ import './styles.scss';
 export default function Dashboard() {
   const [users, setListUsers] = useState([]);
   const [currentPage, setCurrentPage] = useState(0);
+  const [search, setSearch] = useState('');
 
   const menus = [
-    { title: 'Home' },
+    { title: 'Beranda' },
     { title: 'Driver Management' },
     { title: 'Pick Up' },
   ];
@@ -22,7 +23,6 @@ export default function Dashboard() {
       .then((res) => {
         const { data } = res;
         const { results } = data || [];
-        console.log(res);
         setListUsers(results);
       })
       .catch((e) => console.log(e));
@@ -40,11 +40,27 @@ export default function Dashboard() {
     }
   };
 
+  const searchUser = async () => {
+    await axios
+      .get(`https://randomuser.me/api/?results=1&name="${search}"`)
+      .then((res) => {
+        const { data } = res;
+        const { results } = data || [];
+        setListUsers(results);
+      })
+      .catch((e) => console.log(e));
+  };
+
+  const handleSearch = event => {
+      const { code } = event;
+      if(code === "Enter" && search){
+        searchUser();
+      }
+  }
+
   useEffect(() => {
     getListUsers();
   }, [currentPage]);
-
-  console.log(currentPage);
 
   return (
     <div id="dashboard" className="dashboard">
@@ -81,8 +97,13 @@ export default function Dashboard() {
           </div>
           <div className="dashboard-content-header-action">
             <div className="search-input">
-              <div className="search-icon" />
-              <input placeholder="Cari driver" />
+              <div className="search-icon" onClick={searchUser} />
+              <input
+                placeholder="Cari driver"
+                value={search}
+                onChange={(e) => setSearch(e.target.value)}
+                onKeyPress={(e) => handleSearch(e)}
+              />
             </div>
             <button className="button">TAMBAH DRIVER +</button>
           </div>
