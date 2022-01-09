@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import classNames from 'classnames';
 
 // icon
@@ -9,13 +9,28 @@ import './styles.scss';
 
 export default function Header({ menus }) {
   const [open, setOpen] = useState(false);
+  const ref = useRef();
 
   const handleOpenSidebar = () => {
     setOpen((sidebar) => !sidebar);
   };
 
+  const handleOutsideClick = e => {
+    if (ref.current && !ref.current.contains(e.target)) {
+      setOpen(false);
+    }
+  };
+
+  useEffect(() => {
+    document.addEventListener("click", handleOutsideClick);
+
+    return () => {
+      document.removeEventListener("click", handleOutsideClick);
+    };
+  });
+
   return (
-    <div className="dashboard-header-sidebar">
+    <div className="dashboard-header-sidebar" ref={ref}>
       <div className="dashboard-header">
         <div className="dashboard-header-logo">
           <img
